@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Verdade - MatDiscreta</title>
+</head>
+<body>
+    <!-- 
 
+        Negação (inverso):
+            Símbolo: '
+            Prioridade: 1
+            Caso o valor original seja verdade, será falso com a negação.
+            Caso o valor original seja falso, será verdadeiro com a negação.
+
+        Conjunção (E - lógico):
+            Simbolo: ^
+            Prioridade: 2
+            Caso o primeiro valor seja falso e o segundo verdade, o resultado será falso.
+            Caso o primeiro valor seja verdade e o segundo falso, o resultado será falso.
+            Caso o primeiro valor seja falso e o segundo falso, o resultado será falso.
+            Caso o primeiro valor seja verdade e o segundo verdade, o resultado será verdade.
+            
+
+        Disjunção (OU - lógico):
+            Simbolo: v
+            Prioridade: 2
+            Caso o primeiro valor seja verdade e o segundo verdade, o resultado será verdade.
+            Caso o primeiro valor seja verdade e o segundo falso, o resultado será verdade.
+            Caso o primeiro valor seja falso e o segundo verdade, o resultado será verdade.
+            Caso o primeiro valor seja falso e o segundo falso, o resultado será falso.
+        
+        Implicação:
+            Símbolo: -> 
+            prioridade: Prioridade = 3
+            Só é falso quando o primeiro valor é verdadeiro e o segundo falso.
+
+        Equivalência (==)
+            Símbolo: <-> 
+            Prioridade 4
+            1 equivalência com 1 = 1  ;  0 equivalência com 0 = 1
+            e se for 1 equivalencia com 0 = 0
+            e se for 0 equivalencia com 1 = 0
+      
+
+        Ou-Exclusivo:
+            Símbolo: ⊻, para respresentar: &veebar; ou $
+            prioridade 4
+            Caso tenha dois valores verdadeiros, a expressão resultará em falsa, caso apenas um verdadeiro e um falso será verdade, e caso
+            seja falso e falso, também resultará em falso.
+
+        Conectivo Universal Barra_Vertical: 
+            Símbolo: ⇒ |
+            Prioridade 4
+        
+        Conectivo Universal Seta_Baixo:
+            Símbolo: ↓, para respresentar: &darr; ou !
+            (digitar: ! ou . Não faz parte dos conectivos padrões, mas é usado em alguns exercícios.)
+            Prioridade: 4 (útlima)
+    -->
+    <nav>
+
+        <section>
+            <h1>MatDiscreta</h1>
+            <h2>Tabela Verdade</h2>
+            <h3>Integrantes:</h3>
+            <ul>
+                <li>Anselmo Porcaro</li>
+                <li>João Vinicius Vitral</li>
+                <li>Marcelo Bracet</li>
+            </ul>
+        </section>
+    </nav> 
+    
+    <header>
+        <h1>Grupo 2 - Trabalho 2</h1>
+        <div>
+            <input type="text" placeholder="Expressão Lógica">
+            <input type="button" value="Calcular" id="calc_btn"> 
+        </div>
+    </header>
+
+    <main>
+
+
+    </main>
+    
+    <footer>
+<img src="./public/assets/logo_uerj.png" alt="Logo_UERJ/IPRJ">
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
