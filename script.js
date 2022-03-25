@@ -1,8 +1,8 @@
 const table = document.querySelector('.table')
-const expressao = "A ⊻ B <-> (A <-> B)'"
-const expressaoSaved = expressao
-   
-
+const expressao = "A -> (B -> C) <-> (A ^ B) -> C"
+const expressaoHtml = document.querySelector('.expressao')
+expressaoHtml.innerHTML = expressao
+var expressaoSaved = ''
 
 //1 - [A] [0] [A!0] [A <-> A!0]
 
@@ -41,55 +41,45 @@ function Format() {
     const expressaoSemEspacos =
         expressao.replace(/\s/g, '')
     
-
     // trocando os parenteses por colchete
     const expressaoSemParenteses =
         expressaoSemEspacos.replace(/\(/g, '[').replace(/\)/g, ']')
-
-    console.log(expressaoSemParenteses)
     
+    // Salvando a expressão
+    expressaoSaved = expressaoSemParenteses
 
-    // separando as variaveis
     Variavel(expressaoSemParenteses)
 }
 
-var letrasSemDuplicados
-
-var letrasInvertidas
-
-var expressaoSeparada
+var letras,
+    expressaoSeparada,
+    expressaoSemInvertido
+    
+var expressoesComColchete = []
 
 function Variavel(expressao) {
-    // letras
-    const letras = expressao.match(/[A-Z01]/g)
+    const letrasPossiveis = expressao.match(/[A-Z01]/g)
 
-    letrasSemDuplicados = letras.filter(
+    letras = letrasPossiveis.filter(
         (value, index, self) => self.indexOf(value) === index)
-    
-    console.log(letrasSemDuplicados)
 
-    
-        
+      
+    console.log(expressao)
+
+
+
+
+
     // Colchete
     if (expressao.includes('[')) {
-        var posicaoColchete1 = expressao.indexOf('[')
-        var posicaoColchete2 = expressao.indexOf(']')
-
-        var hasInvertion = expressao[posicaoColchete2 + 1] === "'" || null
+        // salvar o que estiver dentro de []
+        expressoesComColchete = expressao.match(/\[(.*?)\]/g)
+        console.log(expressoesComColchete)
+    
     }
 
-    var expressaoDoColchete = ''
-
-    for (let i = posicaoColchete1; i <= posicaoColchete2; i++) {
-        expressaoDoColchete += expressao[i]
-    }
-
-    if (hasInvertion) {
-        expressaoDoColchete += "'"
-    }
-
-    // remove expressaoDoColchete do expressao
-    expressao = expressao.replace(expressaoDoColchete, '')
+    // remove expressaoDoColchete da expressao
+    expressao = expressao.replace(expressoesComColchete, '')
 
     // Partes da expressão
     expressaoSeparada = expressao.split(/(<->)/g)
@@ -107,35 +97,49 @@ function Variavel(expressao) {
             expressaoSeparada.splice(expressaoSeparada.indexOf(item), 1)
         }
     })
-
-    expressaoSeparada.push(expressaoDoColchete)
     
     console.log(expressaoSeparada)
+
+    Imprime()
 }
 
-var colunas = ``
+
+function removeColchetes(expressao) {
+    return expressao.replace(/\[/g, '').replace(/\]/g, '')
+}
+
+
+function Imprime() {
+    var colunas = ``
+        
+    // adicionar colunas de letras
+    letras.map(letra => {
+        colunas += `<th>${letra}</th>`
+    })
     
-// adicionar colunas de letras
-letrasSemDuplicados.map(letra => {
-    colunas += `<th>${letra}</th>`
-})
-
-// adicionar colunas de itens separados
-expressaoSeparada.map(item => {
-    colunas += `<th>${item}</th>`
-})
-
-// adicionar coluna de expressao completa
-colunas += `<th>${expressaoSaved}</th>`
-
-table.innerHTML += `
-    <tr>
-        ${colunas}
-    <tr>
-
-
-
-`
+    for (let i = 0; i < expressoesComColchete.length; i++) {
+        colunas += `<th>${removeColchetes(expressoesComColchete[i])}</th>`
+    }
+    
+    // adicionar colunas de itens separados
+    expressaoSeparada.map(item => {
+        colunas += `<th>${item}</th>`
+    })
+    
+    
+    
+    // adicionar coluna de expressao completa
+    colunas += `<th>${expressaoSaved}</th>`
+    
+    table.innerHTML += `
+        <tr>
+            ${colunas}
+        <tr>
+    
+    
+    
+    `
+}
 /* Criar uma linha para cada item da função expressaoSeparada, e if(letras == 0 || letras == 1){
                                                                     expressaoSeparada +=  '1' ou '0'
                                                                     console.log(expressaoSeparada)
