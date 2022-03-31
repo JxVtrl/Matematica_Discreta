@@ -42,6 +42,10 @@ main {
     border-radius: 10px;
 }
 
+#text::placeholder{
+    text-align: center;
+}
+
 #text:focus {
     border: none;
 }
