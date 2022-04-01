@@ -75,16 +75,9 @@ main {
 .table {
     background-color: #fff;
     width: fit-content;
-    display: flex;
+    display: table-cell;
     align-items: center;
-    justify-content: center;
-}
-
-.table tr {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-shrink: 0;
+    vertical-align: middle !important;
 }
 
 .table th {
@@ -92,4 +85,13 @@ main {
     padding: 10px;
     text-align: center;
     white-space: nowrap;
+    vertical-align: middle !important;
+}
+
+.table td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle !important;
 }
